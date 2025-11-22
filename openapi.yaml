@@ -1,0 +1,30 @@
+swagger: '2.0'
+info:
+  title: API Gateway Routing
+  description: Gateway para redirigir a APIs en App Engine
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+
+paths:
+  /auth/**:
+    get:
+      summary: Redirige a API 1
+      operationId: api1Get
+      x-google-backend:
+        address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+      responses:
+        '200':
+          description: Respuesta exitosa
+    post:
+      summary: Redirige a API 1
+      operationId: api1Post
+      x-google-backend:
+        address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+      responses:
+        '200':
+          description: Respuesta exitosa

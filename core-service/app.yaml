@@ -1,0 +1,24 @@
+runtime: java21
+env: standard
+service: core-service
+instance_class: F1
+entrypoint: java -jar target/core-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+
+#automatic_scaling:
+#  min_num_instances: 1
+#  max_num_instances: 1
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 5
+
+env_variables:
+  SPRING_DATASOURCE_URL: jdbc:mysql://google/core_db?cloudSqlInstance=upn-homework-chepita:us-central1:chepemysql2&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false&allowPublicKeyRetrieval=true
+  SPRING_DATASOURCE_PASSWORD: Chepita123@
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_JPA_HIBERNATE_DDL_AUTO: update
+  JWT_SECRET: mySuperSecretKeyThatIsVeryLongAndSecureForJWTTokenGeneration2025
+  JWT_EXPIRATION: "86400000"
+beta_settings:
+  cloud_sql_instances: upn-homework-chepita:us-central1:chepemysql2

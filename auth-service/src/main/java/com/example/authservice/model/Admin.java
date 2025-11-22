@@ -25,7 +25,7 @@ public class Admin {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "access_level", length = 20)
-    private AccessLevel accessLevel = AccessLevel.PRIVATE;
+    private AccessLevel accessLevel;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

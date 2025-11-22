@@ -27,11 +27,11 @@ public class AuthServiceApplication {
         http
                 .csrf(csrf -> csrf.disable()) // Importante para APIs
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers(HttpMethod.POST, "/api/v1/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/**").permitAll()
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/api/v1/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/api/v1/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/auth/api/v1/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/auth/api/v1/**").permitAll()
+                        .requestMatchers("/auth/api/v1/auth/**").permitAll()
                         .requestMatchers("/public/**").permitAll()
                         .anyRequest().authenticated()
                 )
