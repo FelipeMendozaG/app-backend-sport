@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="sport_type")
+@Table(name="sport_types")
 @Getter
 @Setter
 public class SportType {

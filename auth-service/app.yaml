@@ -14,7 +14,7 @@ resources:
   disk_size_gb: 5
 
 env_variables:
-  SPRING_DATASOURCE_URL: jdbc:postgresql:///postgres?socketFactory=com.google.cloud.sql.postgres.SocketFactory&cloudSqlInstance=upn-homework-chepita:us-central1:chepe
+  SPRING_DATASOURCE_URL: jdbc:postgresql:///auth_db?socketFactory=com.google.cloud.sql.postgres.SocketFactory&cloudSqlInstance=upn-homework-chepita:us-central1:chepe
   SPRING_DATASOURCE_PASSWORD: Chepita123@
   SPRING_DATASOURCE_USERNAME: postgres
   SPRING_JPA_HIBERNATE_DDL_AUTO: update
