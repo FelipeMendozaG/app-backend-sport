@@ -27,6 +27,7 @@ public class AuthServiceApplication {
         http
                 .csrf(csrf -> csrf.disable()) // Importante para APIs
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/api/v1/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/api/v1/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/auth/api/v1/**").permitAll()
