@@ -7,28 +7,114 @@ schemes:
   - https
 produces:
   - application/json
+consumes:
+  - application/json
 
 x-google-endpoints:
-- name: "tu-api-gateway.a.run.app"
+- name: "api-chepita-ishj3mvxxe5lh.apigateway.upn-homework-chepita.cloud.goog"
   allowCors: true
 
 paths:
   /auth/**:
-    get:
-      summary: Redirige a API 1
-      operationId: api1Get
+    options:
+      summary: Soporte CORS preflight
+      operationId: corsAuthOptions
       x-google-backend:
         address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
         path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '204':
+          description: Respuesta CORS exitosa
+    get:
+      summary: Redirige a API 1
+      operationId: api1GetAuth
+      x-google-backend:
+        address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
       responses:
         '200':
           description: Respuesta exitosa
     post:
       summary: Redirige a API 1
-      operationId: api1Post
+      operationId: api1PostAuth
       x-google-backend:
         address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
         path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    put:
+      summary: Redirige a API 1
+      operationId: api1PutAuth
+      x-google-backend:
+        address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    delete:
+      summary: Redirige a API 1
+      operationId: api1DeleteAuth
+      x-google-backend:
+        address: https://auth-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+
+  /core/**:
+    options:
+      summary: Soporte CORS preflight
+      operationId: corsCoreOptions
+      x-google-backend:
+        address: https://core-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '204':
+          description: Respuesta CORS exitosa
+    get:
+      summary: Redirige a API 1
+      operationId: api1GetCore
+      x-google-backend:
+        address: https://core-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    post:
+      summary: Redirige a API 1
+      operationId: api1PostCore
+      x-google-backend:
+        address: https://core-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    put:
+      summary: Redirige a API 1
+      operationId: api1PutCore
+      x-google-backend:
+        address: https://core-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    delete:
+      summary: Redirige a API 1
+      operationId: api1DeleteCore
+      x-google-backend:
+        address: https://core-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
       responses:
         '200':
           description: Respuesta exitosa
