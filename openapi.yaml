@@ -8,6 +8,10 @@ schemes:
 produces:
   - application/json
 
+x-google-endpoints:
+- name: "tu-api-gateway.a.run.app"
+  allowCors: true
+
 paths:
   /auth/**:
     get:

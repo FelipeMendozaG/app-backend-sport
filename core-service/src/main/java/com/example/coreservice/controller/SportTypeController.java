@@ -16,7 +16,6 @@ public class SportTypeController {
     public SportTypeService sportTypeService;
     @GetMapping("sport_types")
     public ResponseEntity<List<SportTypeDTO>> getAllSportTypes(){
-        System.out.println("SportTypeController.getAllSportTypes");
         return new ResponseEntity<>(this.sportTypeService.getAll(), HttpStatus.OK);
     }
 

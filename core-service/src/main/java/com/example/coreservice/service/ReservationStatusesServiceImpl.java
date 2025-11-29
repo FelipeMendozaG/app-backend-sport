@@ -2,10 +2,12 @@ package com.example.coreservice.service;
 
 import com.example.coreservice.dto.ReservationStatusesDTO;
 import com.example.coreservice.mappers.ReservationStatusesMapper;
+import com.example.coreservice.model.ReservationStatus;
 import com.example.coreservice.repository.ReservationStatusesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationStatusesServiceImpl implements  ReservationStatusesService {
@@ -17,26 +19,44 @@ public class ReservationStatusesServiceImpl implements  ReservationStatusesServi
     }
     @Override
     public List<ReservationStatusesDTO> getAll() {
-        return List.of();
+        List<ReservationStatus> reservationStatuses = this.reservationStatusesRepository.findAll();
+        return this.reservationStatusesMapper.reservationStatusToReservationStatusDTOs(reservationStatuses);
     }
 
     @Override
     public ReservationStatusesDTO getReservationStatusesById(Integer id) {
-        return null;
+        ReservationStatus reservationStatus = this.reservationStatusesRepository.findById(id).orElse(null);
+        if(reservationStatus==null){
+            throw new IllegalArgumentException("reservationStatus not found");
+        }
+        return this.reservationStatusesMapper.reservationStatusToReservationStatusDTO(reservationStatus);
     }
 
     @Override
     public ReservationStatusesDTO saveReservationStatuses(ReservationStatusesDTO rs) {
-        return null;
+        ReservationStatus reservationStatus = this.reservationStatusesMapper.reservationStatusDTOToReservationStatus(rs);
+        ReservationStatus reservationStatusCreate = this.reservationStatusesRepository.save(reservationStatus);
+        return this.reservationStatusesMapper.reservationStatusToReservationStatusDTO(reservationStatusCreate);
     }
 
     @Override
     public ReservationStatusesDTO updateReservationStatuses(ReservationStatusesDTO rs) {
-        return null;
+        if(rs.getId()==null){
+            throw new IllegalArgumentException("Id invalido");
+        }
+        ReservationStatus reservationStatus = this.reservationStatusesRepository.findById(rs.getId()).orElse(null);
+        reservationStatus.setName(rs.getName());
+        ReservationStatus reservationStatusUpdate = this.reservationStatusesRepository.save(reservationStatus);
+        return this.reservationStatusesMapper.reservationStatusToReservationStatusDTO(reservationStatusUpdate);
     }
 
     @Override
     public String deleteReservationStatuses(Integer id) {
-        return "";
+        Optional<ReservationStatus> reservationStatus = this.reservationStatusesRepository.findById(id);
+        if(reservationStatus.isPresent()){
+            this.reservationStatusesRepository.delete(reservationStatus.get());
+            return "Registro eliminado";
+        }
+        return "No se pudo eliminar el registro mencionado";
     }
 }

@@ -1,14 +1,17 @@
 package com.example.coreservice.service;
 
+import com.example.coreservice.dto.FieldCreateDTO;
 import com.example.coreservice.dto.FieldDTO;
+import com.example.coreservice.dto.FieldResponseDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface FieldService {
     List<FieldDTO> getAll();
-    FieldDTO getById(String id);
+    FieldDTO getById(Integer id);
     FieldDTO getByName(String name);
-    FieldDTO saveField(FieldDTO fieldDTO);
+    FieldResponseDTO saveField(FieldCreateDTO fieldCreateDTO) throws IOException;
     FieldDTO updateField(FieldDTO fieldDTO);
-    String deleteField(String id);
+    String deleteField(Integer id);
 }
