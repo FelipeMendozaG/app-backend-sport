@@ -1,5 +1,6 @@
 package com.example.coreservice.model;
 
+import com.example.coreservice.converters.SpanishDayOfWeekConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class Schedule {
     @JoinColumn(name = "field_id", nullable = false)
     private Field field;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = SpanishDayOfWeekConverter.class)
     @Column(name = "day_of_week", nullable = false)
     private DayOfWeek dayOfWeek;
 

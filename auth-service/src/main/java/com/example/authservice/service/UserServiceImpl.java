@@ -2,9 +2,13 @@ package com.example.authservice.service;
 
 import com.example.authservice.dtos.*;
 import com.example.authservice.exceptions.EmailAlreadyExistsException;
+import com.example.authservice.mappers.AdminMapper;
 import com.example.authservice.mappers.UserMapper;
+import com.example.authservice.model.Admin;
 import com.example.authservice.model.User;
+import com.example.authservice.repository.AdminRepository;
 import com.example.authservice.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +19,15 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final AdminRepository adminRepository;
+    private final AdminService adminService;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AdminService adminService, AdminRepository adminRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+        this.adminService = adminService;
+        this.adminRepository = adminRepository;
     }
     @Override
     public List<UserDTO> listUsers() {
@@ -93,7 +101,12 @@ public class UserServiceImpl implements UserService {
         }
         UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user);
         // return new LoginResponseDTO(userDTO, "Login exitoso", true);
+        Admin admin=this.adminRepository.findByUserId(userDTO.getId());
         String token = this.jwtService.generateToken(user.getEmail());
-        return new LoginResponseDTO(token, userDTO, "Login exitoso", true);
+        if(admin==null){
+            return new LoginResponseDTO(token, userDTO, "Login exitoso", true);
+        }
+        AdminDTO adminDTO = AdminMapper.INSTANCE.adminToAdminDTO(admin);
+        return new LoginResponseDTO(token, userDTO, "Login exitoso", true, adminDTO);
     }
 }

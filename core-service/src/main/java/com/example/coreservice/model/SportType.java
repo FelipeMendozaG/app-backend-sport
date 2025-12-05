@@ -1,5 +1,6 @@
 package com.example.coreservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,5 +32,6 @@ public class SportType {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "sportType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Field> fields = new ArrayList<>();
 }

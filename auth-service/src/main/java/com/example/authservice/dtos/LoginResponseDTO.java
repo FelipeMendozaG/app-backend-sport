@@ -12,6 +12,7 @@ public class LoginResponseDTO {
     private String email;
     private String token;
     // private UserDTO user;
+    private AdminDTO admin;
     private String message;
     private boolean success;
     public LoginResponseDTO(UserDTO user, String message, boolean success) {
@@ -21,6 +22,7 @@ public class LoginResponseDTO {
         this.email = user.getEmail();
         this.message = message;
         this.success = success;
+        this.admin = null;
     }
 
     public LoginResponseDTO(String token, UserDTO user, String message, boolean success) {
@@ -29,6 +31,16 @@ public class LoginResponseDTO {
         this.name = user.getName();
         this.email = user.getEmail();
         // this.user = user;
+        this.message = message;
+        this.success = success;
+    }
+    public LoginResponseDTO(String token, UserDTO user, String message, boolean success, AdminDTO adminDTO) {
+        this.token = token;
+        this.id = user.getId();
+        this.name = user.getName();
+        this.email = user.getEmail();
+        // this.user = user;
+        this.admin = adminDTO;
         this.message = message;
         this.success = success;
     }

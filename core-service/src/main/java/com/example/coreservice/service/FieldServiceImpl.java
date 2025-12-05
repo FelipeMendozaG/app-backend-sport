@@ -3,6 +3,7 @@ package com.example.coreservice.service;
 import com.example.coreservice.dto.FieldCreateDTO;
 import com.example.coreservice.dto.FieldDTO;
 import com.example.coreservice.dto.FieldResponseDTO;
+import com.example.coreservice.dto.web.FieldWebDTO;
 import com.example.coreservice.mappers.FieldMapper;
 import com.example.coreservice.model.Field;
 import com.example.coreservice.model.ReservationStatus;
@@ -30,7 +31,7 @@ public class FieldServiceImpl implements FieldService {
     }
     @Override
     public List<FieldDTO> getAll() {
-        List<Field> fields = fieldRepository.findAll();
+        List<Field> fields = fieldRepository.findAllWithSportType();
         return this.fieldMapper.fieldsToFieldDTOs(fields);
     }
 
@@ -80,4 +81,16 @@ public class FieldServiceImpl implements FieldService {
         }
         throw new IllegalArgumentException("Field not found");
     }
+
+    @Override
+    public List<FieldWebDTO> getWebAll(){
+        List<Field> fields = fieldRepository.findAllActiveWithSportType();
+        return this.fieldMapper.fieldsToFieldWebDTOs(fields);
+    }
+    @Override
+    public FieldWebDTO getWebById(Integer id) {
+        Field field = this.fieldRepository.findByIdWithSportTypeAndSchedules(id).orElseThrow(()->new RuntimeException("Field no encontrado"));
+        return this.fieldMapper.fieldToFieldWebDTO(field);
+    }
+
 }
