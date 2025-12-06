@@ -8,9 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class ReservationCreateDTO {
-    private Integer Id;
+    private Integer UserId;
     private Integer fieldId;
     private Integer scheduleId;
-    private Integer statusId;
-    private LocalDate reservationDate;
 }

@@ -118,3 +118,55 @@ paths:
       responses:
         '200':
           description: Respuesta exitosa
+
+  /analytics/**:
+    options:
+      summary: Soporte CORS preflight
+      operationId: corsAnalyticsOptions
+      x-google-backend:
+        address: https://analytics-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '204':
+          description: Respuesta CORS exitosa
+    get:
+      summary: Redirige a API 1
+      operationId: api1GetAnalytics
+      x-google-backend:
+        address: https://analytics-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    post:
+      summary: Redirige a API 1
+      operationId: api1PostAnalytics
+      x-google-backend:
+        address: https://analytics-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    put:
+      summary: Redirige a API 1
+      operationId: api1PutAnalytics
+      x-google-backend:
+        address: https://analytics-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
+    delete:
+      summary: Redirige a API 1
+      operationId: api1DeleteAnalytics
+      x-google-backend:
+        address: https://analytics-service-dot-upn-homework-chepita.uc.r.appspot.com/
+        path_translation: APPEND_PATH_TO_ADDRESS
+        disable_auth: true
+      responses:
+        '200':
+          description: Respuesta exitosa
